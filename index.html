@@ -8,6 +8,7 @@
   <meta name="description" content="A SOS SERVICE iniciou suas atividades em 1.995. Fundada por engenheiros tem como FOCO principal a QUALIDADE nos serviços prestados e como META a SATISFAÇÂO de nossos CLIENTES parceiros.">
 
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./odometer/odometer-theme-minimal.css">
 </head>
 
 <body>
@@ -82,25 +83,65 @@
         <h1>Nossos numeros</h1>
       </div>
       <div class="numeros-container">
-        <div>
-          <span>+100</span>
+
+        <div class="numeros-format1">
+          <span class="odometer" id="odometer1">0</span>
           <p>Clientes</p>
         </div>
-        <div>
-          <span>+150</span>
+
+        <div class="numeros-format">
+          <span class="odometer" id="odometer2">0</span>
           <p>Equipamentos</p>
         </div>
-        <div>
-          <span>+4</span>
+
+        <div class="numeros-format">
+          <span class="odometer" id="odometer3">0</span>
           <p>Filiais</p>
         </div>
-
-
-
-
-
       </div>
 
+      <script src="./odometer/odometer.min.js">0</script>
+      <script>
+        const odometer1 = new Odometer({
+          el: document.getElementById("odometer1"),
+          value: 0,
+          format: '(,ddd)'
+        });
+
+        const odometer2 = new Odometer({
+          el: document.getElementById("odometer2"),
+          value: 0,
+          format: '(,ddd)'
+        });
+
+        const odometer3 = new Odometer({
+          el: document.getElementById("odometer3"),
+          value: 0,
+          format: '(,ddd)'
+        });
+
+        const target1 = 150;
+        const target2 = 150;
+        const target3 = 4;
+
+        const interval = setInterval(() => {
+          if (odometer1.value < target1) {
+            odometer1.update(odometer1.value + 10);
+          }
+
+          if (odometer2.value < target2) {
+            odometer2.update(odometer2.value + 10);
+          }
+
+          if (odometer3.value < target3) {
+            odometer3.update(odometer3.value + .5);
+          }
+
+          if (odometer1.value >= target1 && odometer2.value >= target2 && odometer3.value >= target3) {
+            clearInterval(interval);
+          }
+        }, 50); // Update every 50 milliseconds for smoother animation
+      </script>
 
 
 
@@ -144,12 +185,7 @@
 
     </div>
 
-
-
-
   </main>
-
-
 
 
 
